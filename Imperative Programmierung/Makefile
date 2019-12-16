@@ -6,7 +6,10 @@ OBJ = $(wildcard *.o)
 
 .PHONY: all
 
-all: christmas_tree fibonacci printf branching
+all: christmas_tree fibonacci printf branching concat
+
+concat: concat.o
+	$(CC) -o $@.out $^
 
 christmas_tree: christmas_tree.o
 	$(CC) -o $@.out $^
