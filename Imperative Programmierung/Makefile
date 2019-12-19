@@ -1,10 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -ansi -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition
 
-BIN = $(wildcard *.out)
-OBJ = $(wildcard *.o)
-
-.PHONY: all
+BINS = $(wildcard *.out)
+OBJS = $(wildcard *.o)
 
 all: christmas_tree fibonacci printf branching concat
 
@@ -26,8 +24,9 @@ branching: branching.o
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^
 
-%.out: %.o
-	$(CC) -o $^
+$(BINS): $(OBJS)
+	$(CC) $(OBJS) -o $@
 
-clean: $(BIN) $(OBJ)
-	rm $^
+.PHONY: clean
+clean:
+	$(RM) $(BINS) $(OBJS)
