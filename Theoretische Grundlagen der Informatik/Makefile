@@ -4,10 +4,9 @@ CFLAGS = -Wall -ansi -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-st
 BINS = $(wildcard *.out)
 OBJS = $(wildcard *.o)
 
-all: faculty traffic_light
+all: factorial traffic_light
 
-
-faculty: faculty.o
+factorial: factorial.o
 	$(CC) -o $@.out $^
 
 traffic_light: traffic_light.o
