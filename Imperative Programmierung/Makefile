@@ -17,7 +17,11 @@ all: \
 	polynomial_root \
 	dice_throw \
 	geometric_progression \
-	bubble_sort
+	bubble_sort \
+	celestial
+
+celestial: celestial.o
+	$(CC) -o $@.out $^
 
 bubble_sort: bubble_sort.o
 	$(CC) -o $@.out $^
