@@ -16,7 +16,11 @@ all: \
 	gcd \
 	polynomial_root \
 	dice_throw \
-	geometric_progression
+	geometric_progression \
+	bubble_sort
+
+bubble_sort: bubble_sort.o
+	$(CC) -o $@.out $^
 
 geometric_progression: geometric_progression.o
 	$(CC) -o $@.out $^
