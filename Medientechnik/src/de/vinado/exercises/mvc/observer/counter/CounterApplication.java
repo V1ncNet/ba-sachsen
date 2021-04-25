@@ -1,4 +1,6 @@
-package de.vinado.exercises.mvc.observer;
+package de.vinado.exercises.mvc.observer.counter;
+
+import de.vinado.exercises.mvc.observer.NotificationFrame;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

@@ -1,4 +1,4 @@
-package de.vinado.exercises.mvc.observer;
+package de.vinado.exercises.mvc.observer.counter;
 
 import java.util.Observable;
 
