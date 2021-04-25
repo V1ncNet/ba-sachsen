@@ -19,7 +19,13 @@ public class ActionController implements ActionListener {
     private final Map<String, Runnable> actions = new HashMap<>();
 
     public ActionController(Counter counter) {
-        actions.put(INCREMENT_COMMAND, counter::increment);
+        actions.put(INCREMENT_COMMAND, () -> {
+            try {
+                counter.increment();
+            } catch (Exception e) {
+                onError(e.getMessage(), e);
+            }
+        });
         actions.put(RESET_COMMAND, counter::reset);
         actions.put(CLOSE_COMMAND, () -> System.exit(0));
     }
@@ -32,6 +38,9 @@ public class ActionController implements ActionListener {
                 .findFirst()
                 .map(actions::get)
                 .ifPresent(Runnable::run);
+    }
+
+    public void onError(String message, Throwable e) {
     }
 
     private static Predicate<String> equals(String command) {

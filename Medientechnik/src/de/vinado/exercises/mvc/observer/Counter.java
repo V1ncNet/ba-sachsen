@@ -7,12 +7,29 @@ import java.util.Observable;
  */
 public class Counter extends Observable {
 
+    private final int max;
+
     private int count = 0;
 
-    public void increment() {
-        count++;
-        setChanged();
-        notifyObservers();
+    public Counter() {
+        this.max = Integer.MAX_VALUE;
+    }
+
+    public Counter(int max) {
+        this.max = max;
+    }
+
+    public void increment() throws Exception {
+        try {
+            if (max == count) {
+                throw new Exception("Counter has reached its maximum");
+            }
+
+            count++;
+        } finally {
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void reset() {
