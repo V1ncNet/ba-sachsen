@@ -16,6 +16,7 @@ import java.util.Observer;
 public class CounterApplication extends JFrame implements Observer {
 
     private final JTextField valueDisplay = new JTextField(10);
+    private final NotificationFrame notificationFrame = new NotificationFrame();
 
     public CounterApplication(Counter counter) throws HeadlessException {
         super("Counter");
@@ -32,7 +33,8 @@ public class CounterApplication extends JFrame implements Observer {
         ActionController controller = new ActionController(counter) {
             @Override
             public void onError(String message, Throwable e) {
-                valueDisplay.setText(message);
+                notificationFrame.setLocationRelativeTo(CounterApplication.this);
+                notificationFrame.error(message);
             }
         };
 
