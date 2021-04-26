@@ -63,7 +63,7 @@ public class AdderApplication extends JFrame implements Observer {
                 int summand = Integer.parseInt(input);
                 adder.accept(summand);
             } catch (NumberFormatException e) {
-                Notification.error("Cannot parse input as integer");
+                Notification.error("Cannot parse input as integer", AdderApplication.this);
             }
         };
     }

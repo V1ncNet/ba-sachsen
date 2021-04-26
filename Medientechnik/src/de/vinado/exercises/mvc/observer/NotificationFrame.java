@@ -34,7 +34,9 @@ public class NotificationFrame extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof Notification) {
-            error(String.valueOf(arg));
+            NotificationEvent event = (NotificationEvent) arg;
+            setLocationRelativeTo(event.getSource());
+            error(String.valueOf(event.getMessage()));
         }
     }
 }

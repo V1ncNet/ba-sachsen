@@ -1,5 +1,6 @@
 package de.vinado.exercises.mvc.observer;
 
+import java.awt.Component;
 import java.util.Observable;
 
 /**
@@ -10,14 +11,14 @@ public class Notification extends Observable {
     private Notification() {
     }
 
-    public void report(String message) {
+    public void report(String message, Component component) {
         setChanged();
-        notifyObservers(message);
+        notifyObservers(new NotificationEvent(component, message));
     }
 
-    public static void error(String message) {
+    public static void error(String message, Component component) {
         Notification notification = getInstance();
-        notification.report(message);
+        notification.report(message, component);
     }
 
     public static Notification getInstance() {

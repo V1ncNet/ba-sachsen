@@ -32,7 +32,12 @@ public class CounterApplication extends JFrame implements Observer {
         add(valuePanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        ActionController controller = new ActionController(counter);
+        ActionController controller = new ActionController(counter) {
+            @Override
+            protected void onError(String message) {
+                Notification.error(message, CounterApplication.this);
+            }
+        };
 
         JButton incrementBtn = new JButton("Increment");
         incrementBtn.setActionCommand(ActionController.INCREMENT_COMMAND);

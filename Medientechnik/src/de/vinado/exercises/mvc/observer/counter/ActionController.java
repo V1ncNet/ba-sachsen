@@ -1,7 +1,5 @@
 package de.vinado.exercises.mvc.observer.counter;
 
-import de.vinado.exercises.mvc.observer.Notification;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -25,7 +23,7 @@ public class ActionController implements ActionListener {
             try {
                 counter.increment();
             } catch (Exception e) {
-                Notification.error(e.getMessage());
+                onError(e.getMessage());
             }
         });
         actions.put(RESET_COMMAND, counter::reset);
@@ -44,5 +42,8 @@ public class ActionController implements ActionListener {
 
     private static Predicate<String> equals(String command) {
         return id -> Objects.equals(id, command);
+    }
+
+    protected void onError(String message) {
     }
 }
