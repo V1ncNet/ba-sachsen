@@ -1,5 +1,6 @@
 package de.vinado.exercises.mvc.observer.adder;
 
+import de.vinado.exercises.mvc.observer.Notification;
 import de.vinado.exercises.mvc.observer.NotificationFrame;
 
 import javax.swing.JButton;
@@ -20,7 +21,6 @@ import java.util.function.Consumer;
 public class AdderApplication extends JFrame implements Observer {
 
     private final JTextField resultTf = new JTextField(10);
-    private final NotificationFrame notificationFrame = new NotificationFrame();
 
     public AdderApplication(Adder adder) throws HeadlessException {
         super("Adder");
@@ -63,8 +63,7 @@ public class AdderApplication extends JFrame implements Observer {
                 int summand = Integer.parseInt(input);
                 adder.accept(summand);
             } catch (NumberFormatException e) {
-                notificationFrame.setLocationRelativeTo(this);
-                notificationFrame.error("Cannot parse input as integer");
+                Notification.error("Cannot parse input as integer");
             }
         };
     }
@@ -87,5 +86,8 @@ public class AdderApplication extends JFrame implements Observer {
     public static void main(String[] args) {
         Adder adder = new Adder();
         new AdderApplication(adder);
+
+        Notification notification = Notification.getInstance();
+        new NotificationFrame(notification);
     }
 }

@@ -1,5 +1,6 @@
 package de.vinado.exercises.mvc.observer.counter;
 
+import de.vinado.exercises.mvc.observer.Notification;
 import de.vinado.exercises.mvc.observer.NotificationFrame;
 
 import javax.swing.JButton;
@@ -18,7 +19,6 @@ import java.util.Observer;
 public class CounterApplication extends JFrame implements Observer {
 
     private final JTextField valueDisplay = new JTextField(10);
-    private final NotificationFrame notificationFrame = new NotificationFrame();
 
     public CounterApplication(Counter counter) throws HeadlessException {
         super("Counter");
@@ -32,13 +32,7 @@ public class CounterApplication extends JFrame implements Observer {
         add(valuePanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        ActionController controller = new ActionController(counter) {
-            @Override
-            public void onError(String message, Throwable e) {
-                notificationFrame.setLocationRelativeTo(CounterApplication.this);
-                notificationFrame.error(message);
-            }
-        };
+        ActionController controller = new ActionController(counter);
 
         JButton incrementBtn = new JButton("Increment");
         incrementBtn.setActionCommand(ActionController.INCREMENT_COMMAND);
@@ -80,5 +74,8 @@ public class CounterApplication extends JFrame implements Observer {
     public static void main(String[] args) {
         Counter counter = new Counter(2);
         new CounterApplication(counter);
+
+        Notification notification = Notification.getInstance();
+        new NotificationFrame(notification);
     }
 }
