@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="counter.jar" type="JarApplication">
-    <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/counter.jar" />
-    <option name="ALTERNATIVE_JRE_PATH" />
-    <method v="2" />
-  </configuration>
-</component>
